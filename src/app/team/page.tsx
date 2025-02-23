@@ -1,9 +1,9 @@
 'use client'
 
-import Header from "@/app/components/header/header";
+import Header from "@/components/header/header";
 import Hero from "@/app/team/components/hero";
-import Card from "@/app/components/card";
-import Separator from "@/app/components/separator";
+import Card from "@/components/card";
+import Separator from "@/components/separator";
 
 const departments = [
     {
@@ -36,7 +36,7 @@ const departments = [
 export default function Page() {
     return (
         <div>
-            <Header/>
+            <Header active={"Team"}/>
             <Hero title={"Meet the team"} description={"On this page you can find all of our members and the departments they are divided by."} image={"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"}/>
             <div className="w-full my-24 space-y-24">
                 <div className="flex gap-48 justify-center">

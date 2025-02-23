@@ -2,16 +2,17 @@
 
 import {Dialog, DialogPanel} from "@headlessui/react";
 import Image from "next/image";
-import logo from "../../../../public/logo.png";
+import logo from "../../../public/logo.png";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import {useState} from "react";
 
 const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Team', href: 'team' },
-    { name: 'Contact', href: '#' },
-    { name: 'Sponsorships', href: '#' },
-    { name: 'Resources', href: '#' },
+    { name: 'Team', href: '/team' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Contests', href: '/contests' },
+    { name: 'Sponsorships', href: '/sponsorships' },
+    // { name: 'Resources', href: '#' },
 ]
 
 export default function MobileHeader () {

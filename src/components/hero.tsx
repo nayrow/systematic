@@ -1,10 +1,32 @@
-import Header from "@/app/components/header/header";
+import Image from "next/image";
 
-export default function Hero () {
+const hero = {
+    article: {
+      title: "Announcing our next competition.",
+      href: "#",
+    },
+    video: {
+        src: "/video.mp4",
+        type: "video/mp4",
+    },
+    logo: {
+        src: "/logo.png",
+        alt: "logo",
+    },
+    description: "University robotics team from Romania who wants to conquer the robotics world and innovate with their creativity.",
+    primaryButton: {
+        href: "#",
+        text: "Sponsor Us",
+    },
+    secondaryButton: {
+        href: "/team",
+        text: "Meet the team",
+    }
+}
+
+export default function Hero() {
     return (
         <div className="bg-gray-900 h-screen">
-
-            <Header/>
 
             <div className="relative h-screen isolate overflow-hidden pt-14">
                 <video
@@ -13,7 +35,7 @@ export default function Hero () {
                     loop
                     className="absolute inset-0 -z-10 object-cover"
                 >
-                    <source src="/video.mp4" type="video/mp4"/>
+                    <source src={hero.video.src} type={hero.video.type}/>
                 </video>
                 <div className={"absolute top-0 left-0 h-screen w-screen bg-dark opacity-80 -z-10"}>
 
@@ -23,30 +45,33 @@ export default function Hero () {
                         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div
                                 className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-light/10 hover:ring-light/20">
-                                Announcing our next competition.{' '}
-                                <a href="#" className="font-semibold text-light">
+                                {hero.article.title}{' '}
+                                <a href={hero.article.href} className="font-semibold text-light">
                                     <span aria-hidden="true" className="absolute inset-0"/>
                                     Read more <span aria-hidden="true">&rarr;</span>
                                 </a>
                             </div>
                         </div>
                         <div className="text-center">
-                            <h1 className="text-balance text-5xl font-semibold tracking-tight text-light sm:text-7xl">
-                                SySTEMatic
-                            </h1>
+                            <Image
+                                alt={hero.logo.alt}
+                                height={1500}
+                                width={2830}
+                                src={hero.logo.src}
+                                className={"w-60 h-60  mx-auto"}
+                            />
                             <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
-                                University robotics team from Romania who wants to conquer the robotics world and
-                                innovate with their creativity.
+                                {hero.description}
                             </p>
                             <div className="mt-10 flex items-center justify-center gap-x-6">
                                 <a
-                                    href="#"
+                                    href={hero.primaryButton.href}
                                     className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-light shadow-sm hover:bg-primary/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                                 >
-                                    Sponsor Us
+                                    {hero.primaryButton.text}
                                 </a>
-                                <a href="#" className="text-sm/6 font-semibold text-light">
-                                    Meet the team <span aria-hidden="true">→</span>
+                                <a href={hero.secondaryButton.href} className="text-sm/6 font-semibold text-light">
+                                    {hero.secondaryButton.text} <span aria-hidden="true">→</span>
                                 </a>
                             </div>
                         </div>

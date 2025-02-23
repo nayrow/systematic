@@ -1,12 +1,9 @@
 import Hero from "@/app/team/components/hero";
-import Header from "@/app/components/header/header";
-import Card from "@/app/components/card";
-import Separator from "@/app/components/separator";
+import Header from "@/components/header/header";
+import Card from "@/components/card";
+import Separator from "@/components/separator";
 
-export default async function Page(
-    {params}:
-    { params: Promise<{ department: string }> }
-) {
+export default async function Page() {
     // const departmentSlug = (await params).department
     const department = {
         name: "Proiectare",
@@ -43,7 +40,7 @@ export default async function Page(
     }
     return (
         <div>
-            <Header/>
+            <Header active={"Team"}/>
             <Hero title={department.hero.title} description={department.hero.description}
                   image={department.hero.image}/>
 
