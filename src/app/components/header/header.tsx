@@ -4,7 +4,7 @@ import MobileHeader from "@/app/components/header/mobile";
 
 const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Team', href: 'team' },
+    { name: 'Team', href: '/team' },
     { name: 'Contact', href: '#' },
     { name: 'Sponsorships', href: '#' },
     { name: 'Resources', href: '#' },

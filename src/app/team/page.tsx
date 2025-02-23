@@ -3,12 +3,41 @@
 import Header from "@/app/components/header/header";
 import Hero from "@/app/team/components/hero";
 import Card from "@/app/components/card";
+import Separator from "@/app/components/separator";
 
-export default function Page(){
+const departments = [
+    {
+        name: "Proiectare",
+        href: "team/proiectare",
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    },
+    {
+        name: "Mecanica",
+        href: "team/mecanica",
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    },
+    {
+        name: "Programare",
+        href: "team/programare",
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    },
+    {
+        name: "Design",
+        href: "team/design",
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    },
+    {
+        name: "PR",
+        href: "team/pr",
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+    }
+]
+
+export default function Page() {
     return (
         <div>
             <Header/>
-            <Hero/>
+            <Hero title={"Meet the team"} description={"On this page you can find all of our members and the departments they are divided by."} image={"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"}/>
             <div className="w-full my-24 space-y-24">
                 <div className="flex gap-48 justify-center">
                     <Card
@@ -23,35 +52,19 @@ export default function Page(){
                     />
                 </div>
                 <div>
-                    <div className={"py-8 bg-primary"}>
-                        <p className={"text-4xl font-bold text-center"}>
-                            Departments
-                        </p>
-                    </div>
+                    <Separator text={"Departments"}/>
                     <div className="p-24 w-full flex flex-wrap justify-center gap-x-48 gap-y-24">
-                    <Card
-                            title="Proiectare"
-                            href="team/avioane"
-                            image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-                        />
+                        {
+                            departments.map((department) => (
                         <Card
-                            title="Mecanica"
-                            image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+                            key={department.name}
+                            title={department.name}
+                            href={department.href}
+                            image={department.image}
                         />
-                        <Card
-                            title="Programare"
-                            image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-                        />
-                        <Card
-                            title="Design"
-                            image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-                        />
-                        <Card
-                            title="PR"
-                            image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
-                        />
+                        ))
+                        }
                     </div>
-
                 </div>
             </div>
         </div>
