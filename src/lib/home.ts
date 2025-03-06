@@ -51,7 +51,17 @@ export interface HomePage {
 }
 
 export async function getHomePage(): Promise<HomePage> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/home`,{next:{revalidate:3600}})
+    const res = await fetch(`${process.env.STRAPI_URL}/api/home
+    populate=hero
+    &populate=hero.featured_article
+    &populate=hero.video
+    &populate=hero.logo
+    &populate=hero.primary_button
+    &populate=hero.secondary_button
+    &populate=news
+    &populate=news.posts
+    &populate=news.posts.image
+    `,{next:{revalidate:3600}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }

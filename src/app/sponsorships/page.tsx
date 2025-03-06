@@ -15,7 +15,6 @@ const pricing = {
             name: 'Starter',
             id: 'tier-starter',
             href: '#',
-            featured: false,
             description: 'Everything you need to get started.',
             price: '$19',
             highlights: ['Custom domains', 'Edge content delivery', 'Advanced analytics'],
@@ -24,7 +23,6 @@ const pricing = {
             name: 'Growth',
             id: 'tier-growth',
             href: '#',
-            featured: false,
             description: 'All the extras for your growing team.',
             price: '$49',
             highlights: ['Custom domains', 'Edge content delivery', 'Advanced analytics', 'Quarterly workshops'],
@@ -33,7 +31,6 @@ const pricing = {
             name: 'Scale',
             id: 'tier-scale',
             href: '#',
-            featured: true,
             description: 'Added flexibility at scale.',
             price: '$99',
             highlights: [
