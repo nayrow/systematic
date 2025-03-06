@@ -1,30 +1,7 @@
 import Image from "next/image";
+import {HomeHero} from "@/lib/home";
 
-const hero = {
-    article: {
-      title: "Announcing our next competition.",
-      href: "#",
-    },
-    video: {
-        src: "/video.mp4",
-        type: "video/mp4",
-    },
-    logo: {
-        src: "/logo.png",
-        alt: "logo",
-    },
-    description: "University robotics team from Romania who wants to conquer the robotics world and innovate with their creativity.",
-    primaryButton: {
-        href: "#",
-        text: "Sponsor Us",
-    },
-    secondaryButton: {
-        href: "/team",
-        text: "Meet the team",
-    }
-}
-
-export default function Hero() {
+export default function Hero({ hero }: { hero: HomeHero }) {
     return (
         <div className="bg-gray-900 h-screen">
 
@@ -35,7 +12,7 @@ export default function Hero() {
                     loop
                     className="absolute inset-0 -z-10 object-cover"
                 >
-                    <source src={hero.video.src} type={hero.video.type}/>
+                    <source src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${hero.video.url}`} type={hero.video.mime}/>
                 </video>
                 <div className={"absolute top-0 left-0 h-screen w-screen bg-dark opacity-80 -z-10"}>
 
@@ -45,8 +22,8 @@ export default function Hero() {
                         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div
                                 className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-light/10 hover:ring-light/20">
-                                {hero.article.title}{' '}
-                                <a href={hero.article.href} className="font-semibold text-light">
+                                {hero.featured_article.title}{' '}
+                                <a href={hero.featured_article.href} className="font-semibold text-light">
                                     <span aria-hidden="true" className="absolute inset-0"/>
                                     Read more <span aria-hidden="true">&rarr;</span>
                                 </a>
@@ -54,10 +31,10 @@ export default function Hero() {
                         </div>
                         <div className="text-center">
                             <Image
-                                alt={hero.logo.alt}
+                                alt={"logo"}
                                 height={1500}
                                 width={2830}
-                                src={hero.logo.src}
+                                src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${hero.logo.url}`}
                                 className={"w-60 h-60  mx-auto"}
                             />
                             <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
@@ -65,13 +42,13 @@ export default function Hero() {
                             </p>
                             <div className="mt-10 flex items-center justify-center gap-x-6">
                                 <a
-                                    href={hero.primaryButton.href}
+                                    href={hero.primary_button.href}
                                     className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-light shadow-sm hover:bg-primary/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                                 >
-                                    {hero.primaryButton.text}
+                                    {hero.primary_button.text}
                                 </a>
-                                <a href={hero.secondaryButton.href} className="text-sm/6 font-semibold text-light">
-                                    {hero.secondaryButton.text} <span aria-hidden="true">→</span>
+                                <a href={hero.secondary_button.href} className="text-sm/6 font-semibold text-light">
+                                    {hero.secondary_button.text} <span aria-hidden="true">→</span>
                                 </a>
                             </div>
                         </div>

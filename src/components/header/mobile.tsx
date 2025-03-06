@@ -1,22 +1,43 @@
-'use client'
+"use client";
 
-import {Dialog, DialogPanel} from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 import Image from "next/image";
-import logo from "../../../public/logo.png";
-import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
-import {useState} from "react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
+import { Header } from "@/lib/header";
 
-const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Team', href: '/team' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Contests', href: '/contests' },
-    { name: 'Sponsorships', href: '/sponsorships' },
-    // { name: 'Resources', href: '#' },
-]
 
-export default function MobileHeader () {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+export default function MobileHeader() {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [header, setHeader] = useState<Header | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+
+                if (!STRAPI_URL) {
+                    console.error("STRAPI_URL is not defined in environment variables");
+                    return;
+                }
+
+                const res = await fetch(`${STRAPI_URL}/api/header?populate=logo&populate=links`);
+
+                if (!res.ok) {
+                    console.error(`Failed to fetch header: ${res.status} ${res.statusText}`);
+                    return;
+                }
+
+                const json = await res.json();
+                setHeader(json.data);
+            } catch (error) {
+                console.error("Failed to load header:", error);
+            }
+        })();
+    }, []);
+
+
+
 
     return (
         <>
@@ -24,14 +45,18 @@ export default function MobileHeader () {
                 <div className="flex lg:flex-1">
                     <a href="#" className="-m-1.5 p-1.5">
                         <span className="sr-only">Your Company</span>
-                        <Image
-                            alt=""
-                            src={logo}
-                            layout="intrinsic"
-                            width={0}
-                            height={0}
-                            className="h-8 w-8"
-                        />
+                        {
+                            header?.logo && (
+                                <Image
+                                    alt=""
+                                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${header?.logo.url}`}
+                                    layout="intrinsic"
+                                    width={0}
+                                    height={0}
+                                    className="h-8 w-8"
+                                />
+                            )
+                        }
                     </a>
                 </div>
                 <div className="flex lg:hidden">
@@ -52,14 +77,18 @@ export default function MobileHeader () {
                     <div className="flex items-center justify-between">
                         <a href="#" className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
-                            <Image
-                                alt=""
-                                src={logo}
-                                layout="intrinsic"
-                                width={0}
-                                height={0}
-                                className="h-8 w-8"
-                            />
+                            {
+                                header?.logo && (
+                                    <Image
+                                        alt=""
+                                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${header?.logo.url}`}
+                                        layout="intrinsic"
+                                        width={0}
+                                        height={0}
+                                        className="h-8 w-8"
+                                    />
+                                )
+                            }
                         </a>
                         <button
                             type="button"
@@ -73,13 +102,13 @@ export default function MobileHeader () {
                     <div className="mt-6 flow-root">
                         <div className="-my-6 divide-y divide-gray-500/25">
                             <div className="space-y-2 py-6">
-                                {navigation.map((item) => (
+                                {header?.links.map((link) => (
                                     <a
-                                        key={item.name}
-                                        href={item.href}
+                                        key={link.name}
+                                        href={link.href}
                                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-light hover:bg-gray-800"
                                     >
-                                        {item.name}
+                                        {link.name}
                                     </a>
                                 ))}
                             </div>

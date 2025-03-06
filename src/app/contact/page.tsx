@@ -1,30 +1,11 @@
 import Header from "@/components/header/header";
 import SocialLink from "@/app/contact/components/socialLink";
+import {getContactPage} from "@/lib/contact";
+import ContactForm from "@/app/contact/components/form";
 
-const socialLinks = [
-    {
-        name: "systematic_robotics",
-        linkUrl: "https://instagram.com/systematic_robotics",
-        iconUrl: "https://instagram.com/systematic_robotics"
-    },
-    {
-        name: "Facebook",
-        linkUrl: "https://facebook.com/systematic_robotics",
-        iconUrl: "https://facebook.com/systematic_robotics"
-    },
-    {
-        name: "LinkedIn",
-        linkUrl: "https://linkedin.com/systematic_robotics",
-        iconUrl: "https://linkedin.com/systematic_robotics"
-    },
-    {
-        name: "Twitter",
-        linkUrl: "https://twitter.com/systematic_robotics",
-        iconUrl: "https://twitter.com/systematic_robotics"
-    }
-]
 
-export default function Example() {
+export default async function Page() {
+    const contact = await getContactPage();
     return (
         <>
             <Header active={"Contact"}/>
@@ -69,106 +50,22 @@ export default function Example() {
                                     />
                                 </div>
                             </div>
-                            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl">Get
-                                in touch</h2>
+                            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                                {contact.title}
+                            </h2>
                             <p className="mt-6 text-lg/8 text-gray-300">
-                                Proin volutpat consequat porttitor cras nullam gravida at. Orci molestie a eu arcu. Sed
-                                ut tincidunt
-                                integer elementum id sem. Arcu sed malesuada et magna.
+                                {contact.description}
                             </p>
                             <dl className="mt-10 text-base/7 text-gray-300">
-                                {socialLinks.map((socialLink) => (
-                                    <SocialLink key={socialLink.name} name={socialLink.name}
-                                                linkUrl={socialLink.linkUrl}
-                                                iconUrl={socialLink.iconUrl}/>
+                                {contact.social_links.map((social_link) => (
+                                    <SocialLink key={social_link.name} name={social_link.name}
+                                                linkUrl={social_link.url}
+                                                iconUrl={social_link.icon_url}/>
                                 ))}
                             </dl>
                         </div>
                     </div>
-                    <form action="#" method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
-                        <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-                            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                                <div>
-                                    <label htmlFor="first-name" className="block text-sm/6 font-semibold text-white">
-                                        First name
-                                    </label>
-                                    <div className="mt-2.5">
-                                        <input
-                                            id="first-name"
-                                            name="first-name"
-                                            type="text"
-                                            autoComplete="given-name"
-                                            className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label htmlFor="last-name" className="block text-sm/6 font-semibold text-white">
-                                        Last name
-                                    </label>
-                                    <div className="mt-2.5">
-                                        <input
-                                            id="last-name"
-                                            name="last-name"
-                                            type="text"
-                                            autoComplete="family-name"
-                                            className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label htmlFor="email" className="block text-sm/6 font-semibold text-white">
-                                        Email
-                                    </label>
-                                    <div className="mt-2.5">
-                                        <input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            autoComplete="email"
-                                            className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label htmlFor="phone-number" className="block text-sm/6 font-semibold text-white">
-                                        Phone number
-                                    </label>
-                                    <div className="mt-2.5">
-                                        <input
-                                            id="phone-number"
-                                            name="phone-number"
-                                            type="tel"
-                                            autoComplete="tel"
-                                            className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label htmlFor="message" className="block text-sm/6 font-semibold text-white">
-                                        Message
-                                    </label>
-                                    <div className="mt-2.5">
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows={4}
-                                        className="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
-                                        defaultValue={''}
-                                    />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mt-8 flex justify-end">
-                                <button
-                                    type="submit"
-                                    className="rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                                >
-                                    Send message
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <ContactForm/>
                 </div>
             </div>
         </>

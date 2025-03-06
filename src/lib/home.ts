@@ -1,3 +1,5 @@
+import {Hero} from "@/lib/team";
+
 export interface FeaturedArticle {
     id: string;
     title: string;
@@ -7,6 +9,7 @@ export interface FeaturedArticle {
 export interface Video {
     id: string;
     url: string;
+    mime: string;
 }
 
 export interface Image {
@@ -17,7 +20,7 @@ export interface Image {
 export interface HomeButton {
     id: string;
     text: string;
-    url: string;
+    href: string;
 }
 
 export interface HomeHero {
@@ -31,18 +34,17 @@ export interface HomeHero {
 
 export interface NewsPost {
     id: string;
-    title: string;
+    hero: Hero;
     slug: string;
     date: string;
-    description: string;
-    image: Image;
+    content: string;
 }
 
 export interface News {
     id: string;
     title: string;
     subtitle: string;
-    posts: NewsPost[];
+    news_posts: NewsPost[];
 }
 
 export interface HomePage {
@@ -50,22 +52,22 @@ export interface HomePage {
     news : News;
 }
 
-export async function getHomePage(): Promise<HomePage> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/home
-    populate=hero
-    &populate=hero.featured_article
-    &populate=hero.video
-    &populate=hero.logo
-    &populate=hero.primary_button
-    &populate=hero.secondary_button
-    &populate=news
-    &populate=news.posts
-    &populate=news.posts.image
-    `,{next:{revalidate:3600}})
+export async function getHero(): Promise<HomeHero> {
+    const res = await fetch(`${process.env.STRAPI_URL}/api/home?populate=hero&populate=hero.featured_article&populate=hero.video&populate=hero.logo&populate=hero.primary_button&populate=hero.secondary_button`,{next:{revalidate:1}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }
     const home = await res.json()
 
-    return home.data;
+    return home.data.hero;
+}
+
+export async function getNews(): Promise<News> {
+    const res = await fetch(`${process.env.STRAPI_URL}/api/home?populate=news&populate=news.news_posts&populate=news.news_posts.hero.image`,{next:{revalidate:1}})
+    if (!res.ok) {
+        throw new Error('Failed to fetch home from Strapi')
+    }
+    const home = await res.json()
+
+    return home.data.news;
 }
