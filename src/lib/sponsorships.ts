@@ -32,7 +32,7 @@ export interface SponsorshipsPage{
 
 
 export async function getSponsorshipsPage(): Promise<SponsorshipsPage> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/sponsorhip?populate=tiers&populate=tiers.highlights&populate=sections&populate=sections.features`,{next:{revalidate:1}})
+    const res = await fetch(`${process.env.STRAPI_URL}/api/sponsorhip?populate=tiers&populate=tiers.highlights&populate=sections&populate=sections.features`,{next:{revalidate:1800}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }

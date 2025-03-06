@@ -32,7 +32,7 @@ export interface ContestsPage {
 }
 
 export async function getContestsPage(): Promise<ContestsPage> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/contests-page?populate=hero&populate=hero.image&populate=contests&populate=contests.image&populate=contests`,{next:{revalidate:1}})
+    const res = await fetch(`${process.env.STRAPI_URL}/api/contests-page?populate=hero&populate=hero.image&populate=contests&populate=contests.image&populate=contests`,{next:{revalidate:1800}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }

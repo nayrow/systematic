@@ -12,7 +12,7 @@ export interface ContactPage {
 }
 
 export async function getContactPage(): Promise<ContactPage> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/contact?populate=social_links`,{next:{revalidate:1}})
+    const res = await fetch(`${process.env.STRAPI_URL}/api/contact?populate=social_links`,{next:{revalidate:1800}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }

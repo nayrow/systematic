@@ -53,7 +53,7 @@ export interface HomePage {
 }
 
 export async function getHero(): Promise<HomeHero> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/home?populate=hero&populate=hero.featured_article&populate=hero.video&populate=hero.logo&populate=hero.primary_button&populate=hero.secondary_button`,{next:{revalidate:1}})
+    const res = await fetch(`${process.env.STRAPI_URL}/api/home?populate=hero&populate=hero.featured_article&populate=hero.video&populate=hero.logo&populate=hero.primary_button&populate=hero.secondary_button`,{next:{revalidate:1800}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }
@@ -63,7 +63,7 @@ export async function getHero(): Promise<HomeHero> {
 }
 
 export async function getNews(): Promise<News> {
-    const res = await fetch(`${process.env.STRAPI_URL}/api/home?populate=news&populate=news.news_posts&populate=news.news_posts.hero.image`,{next:{revalidate:1}})
+    const res = await fetch(`${process.env.STRAPI_URL}/api/home?populate=news&populate=news.news_posts&populate=news.news_posts.hero.image`,{next:{revalidate:1800}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }

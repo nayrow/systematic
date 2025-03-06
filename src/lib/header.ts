@@ -17,7 +17,7 @@ export interface Header {
 export async function getHeader(): Promise<Header> {
 
     const res = await fetch(`${process.env.STRAPI_URL}/api/header?populate=logo&populate=links`, {
-        next: { revalidate: 1 }
+        next: { revalidate:1800 }
     });
 
     if (!res.ok) {

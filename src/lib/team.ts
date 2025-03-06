@@ -38,7 +38,7 @@ export interface TeamPage {
 }
 
 export async function getTeamPage(): Promise<TeamPage> {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/team?populate=hero&populate=hero.image&populate=leaders&populate=leaders.image&populate=departments&populate=departments.image&populate=departments.leader&populate=departments.leader.image&populate=departments.team_members&populate=departments.team_members.image&populate=departments.hero&populate=departments.hero.image`, {next: {revalidate: 1}})
+    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/team?populate=hero&populate=hero.image&populate=leaders&populate=leaders.image&populate=departments&populate=departments.image&populate=departments.leader&populate=departments.leader.image&populate=departments.team_members&populate=departments.team_members.image&populate=departments.hero&populate=departments.hero.image`, {next: {revalidate:1800}})
     if (!res.ok) {
         throw new Error('Failed to fetch home from Strapi')
     }
