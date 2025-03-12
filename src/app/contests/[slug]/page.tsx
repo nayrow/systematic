@@ -4,10 +4,9 @@ import Markdown from "markdown-to-jsx";
 import {getContestBySlug} from "@/lib/contests";
 
 
-export default async function Page({params}: { params: Promise<{contest:string}> }) {
+export default async function Page({params}: { params: Promise<{slug:string}> }) {
     const contestSlug = (await params)
-    const contest = await getContestBySlug(contestSlug.contest)
-    console.log(contest.content)
+    const contest = await getContestBySlug(contestSlug.slug)
     return (
         <div>
             <Header active={"Contests"}/>

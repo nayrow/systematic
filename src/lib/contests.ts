@@ -44,6 +44,8 @@ export async function getContestsPage(): Promise<ContestsPage> {
 export async function getContestBySlug(slug: string): Promise<Contest> {
     const contestsPage = await getContestsPage();
 
+    console.log(slug);
+
     const contest = contestsPage.contests.find(dep => dep.slug === slug);
 
     if (!contest) {
