@@ -18,7 +18,7 @@ export default async function Page() {
                             key={leader.id}
                             title={leader.role}
                             subtitle={leader.name}
-                            image={leader.image.url}
+                            image={`${process.env.NEXT_PUBLIC_STRAPI_URL}${leader.image.url}`}
                         />
                     ))}
                 </div>
