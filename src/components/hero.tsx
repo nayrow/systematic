@@ -10,7 +10,7 @@ export default function Hero({ hero }: { hero: HomeHero }) {
                     autoPlay
                     muted
                     loop
-                    className="absolute inset-0 -z-10 object-cover"
+                    className="absolute inset-0 -z-10 object-cover w-full h-full"
                 >
                     <source src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${hero.video.url}`} type={hero.video.mime}/>
                 </video>
