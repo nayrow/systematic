@@ -4,7 +4,6 @@ import {HomeHero} from "@/lib/home";
 export default function Hero({ hero }: { hero: HomeHero }) {
     return (
         <div className="bg-gray-900 h-screen">
-
             <div className="relative h-screen isolate overflow-hidden pt-14">
                 <video
                     autoPlay
@@ -15,10 +14,9 @@ export default function Hero({ hero }: { hero: HomeHero }) {
                     <source src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${hero.video.url}`} type={hero.video.mime}/>
                 </video>
                 <div className={"absolute top-0 left-0 h-screen w-screen bg-dark opacity-80 -z-10"}>
-
                 </div>
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div className="mx-auto max-w-2xl py-32 sm:py-48">
                         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div
                                 className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-light/10 hover:ring-light/20">
